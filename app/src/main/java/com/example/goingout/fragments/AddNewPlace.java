@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import com.example.goingout.backend.ViewModel;
 public class AddNewPlace extends Fragment {
     private ViewModel viewModel;
     private NavController navController;
+    private CheckBox isVisited;
     private EditText name;
     public AddNewPlace() {
         // Required empty public constructor
@@ -46,10 +48,10 @@ public class AddNewPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 name = view.findViewById(R.id.place_name);
+                isVisited = view.findViewById(R.id.isVisited);
                 if (!name.getText().toString().isEmpty()){
-                    //Todo add in the place here!
                     viewModel.insertPlace(new Place(name.getText().toString(),
-                            view.findViewById(R.id.isVisited).isSelected()));
+                            isVisited.isChecked()));
                     Toast.makeText(view.getContext(),
                             name.getText().toString() + " Added", Toast.LENGTH_SHORT).show();
                     navController.navigate(AddNewPlaceDirections

@@ -33,6 +33,27 @@ public class HomeScreenFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
+        view.findViewById(R.id.all_places).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(HomeScreenFragmentDirections
+                    .actionHomeScreenFragmentToAllPlacesFragment());
+            }
+        });
+        view.findViewById(R.id.to_visit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(HomeScreenFragmentDirections
+                        .actionHomeScreenFragmentToPlacesToVisitFragment());
+            }
+        });
+        view.findViewById(R.id.visited).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(HomeScreenFragmentDirections
+                        .actionHomeScreenFragmentToVisitedPlacesFragment());
+            }
+        });
         view.findViewById(R.id.add_place).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

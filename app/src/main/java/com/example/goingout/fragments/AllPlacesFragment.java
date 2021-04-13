@@ -2,59 +2,58 @@ package com.example.goingout.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.goingout.R;
+import com.example.goingout.adapters.PlacesAdapter;
+import com.example.goingout.backend.Place;
+import com.example.goingout.backend.ViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AllPlacesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.List;
+
 public class AllPlacesFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private ViewModel viewModel;
+    private RecyclerView recycler;
+    private PlacesAdapter adapter;
     public AllPlacesFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AllPlacesFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AllPlacesFragment newInstance(String param1, String param2) {
+    public static AllPlacesFragment newInstance() {
         AllPlacesFragment fragment = new AllPlacesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(ViewModel.class);
+        recycler = view.findViewById(R.id.all_places_recycler);
+        adapter = new PlacesAdapter();
+        recycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recycler.setAdapter(adapter);
+        viewModel.getAllPlaces().observe(getViewLifecycleOwner(), new Observer<List<Place>>() {
+            @Override
+            public void onChanged(List<Place> places) {
+                adapter.setPlaces(places);
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override

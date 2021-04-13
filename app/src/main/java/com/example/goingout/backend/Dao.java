@@ -17,10 +17,10 @@ public interface Dao{
     void updatePlace(Place place);
     @Delete
     void deletePlace(Place place);
-    @Query("SELECT * FROM Place WHERE visited = 1")
+    @Query("SELECT * FROM Place WHERE visited = 1 ORDER BY name")
     LiveData<List<Place>> getVisitedPlaces();
-    @Query("SELECT * FROM Place WHERE visited = 0")
+    @Query("SELECT * FROM Place WHERE visited = 0 ORDER BY name")
     LiveData<List<Place>> getUnvisitedPlaces();
-    @Query("SELECT * FROM Place")
+    @Query("SELECT * FROM Place ORDER BY name")
     LiveData<List<Place>> getAllPlaces();
 }
