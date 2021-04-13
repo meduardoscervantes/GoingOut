@@ -25,10 +25,10 @@ public class Place {
     public String getName() {
         return name;
     }
-    public boolean isVisited(){
+    public boolean getVisited(){
         return visited;
     }
-    public void haveVisited(boolean visited){
+    public void setVisited(boolean visited){
         this.visited = visited;
     }
 }

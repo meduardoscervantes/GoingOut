@@ -9,5 +9,62 @@
         android:id="@+id/homeScreenFragment"
         android:name="com.example.goingout.fragments.HomeScreenFragment"
         android:label="fragment_home_screen"
-        tools:layout="@layout/fragment_home_screen" />
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_homeScreenFragment_to_allPlacesFragment"
+            app:destination="@id/allPlacesFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_visitedPlacesFragment"
+            app:destination="@id/visitedPlacesFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_placesToVisitFragment"
+            app:destination="@id/placesToVisitFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_addNewPlace"
+            app:destination="@id/addNewPlace"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/allPlacesFragment"
+        android:name="com.example.goingout.fragments.AllPlacesFragment"
+        android:label="fragment_all_places"
+        tools:layout="@layout/fragment_all_places" >
+        <action
+            android:id="@+id/action_allPlacesFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/placesToVisitFragment"
+        android:name="com.example.goingout.fragments.PlacesToVisitFragment"
+        android:label="fragment_places_to_visit"
+        tools:layout="@layout/fragment_places_to_visit" >
+        <action
+            android:id="@+id/action_placesToVisitFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/visitedPlacesFragment"
+        android:name="com.example.goingout.fragments.VisitedPlacesFragment"
+        android:label="fragment_visited_places"
+        tools:layout="@layout/fragment_visited_places" >
+        <action
+            android:id="@+id/action_visitedPlacesFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewPlace"
+        android:name="com.example.goingout.fragments.AddNewPlace"
+        android:label="fragment_add_new_place"
+        tools:layout="@layout/fragment_add_new_place" >
+        <action
+            android:id="@+id/action_addNewPlace_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
 </navigation>
