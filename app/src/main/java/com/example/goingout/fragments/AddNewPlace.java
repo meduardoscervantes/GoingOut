@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,7 @@ import com.example.goingout.backend.ViewModel;
 
 public class AddNewPlace extends Fragment {
     private ViewModel viewModel;
+    private NavController navController;
     private EditText name;
     public AddNewPlace() {
         // Required empty public constructor
@@ -38,7 +41,8 @@ public class AddNewPlace extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(ViewModel.class);
-        view.findViewById(R.id.add_place).setOnClickListener(new View.OnClickListener() {
+        navController = Navigation.findNavController(view);
+        view.findViewById(R.id.insert_place).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 name = view.findViewById(R.id.place_name);
@@ -46,6 +50,10 @@ public class AddNewPlace extends Fragment {
                     //Todo add in the place here!
                     viewModel.insertPlace(new Place(name.getText().toString(),
                             view.findViewById(R.id.isVisited).isSelected()));
+                    Toast.makeText(view.getContext(),
+                            name.getText().toString() + " Added", Toast.LENGTH_SHORT).show();
+                    navController.navigate(AddNewPlaceDirections
+                            .actionAddNewPlaceToHomeScreenFragment());
                 }else{
                     Toast.makeText(view.getContext(),
                             "What's the name?!", Toast.LENGTH_SHORT).show();
