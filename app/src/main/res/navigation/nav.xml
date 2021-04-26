@@ -13,18 +13,27 @@
         <action
             android:id="@+id/action_homeScreenFragment_to_allPlacesFragment"
             app:destination="@id/allPlacesFragment"
+            app:popUpTo="@id/homeScreenFragment"
             app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_homeScreenFragment_to_visitedPlacesFragment"
             app:destination="@id/visitedPlacesFragment"
+            app:popUpTo="@id/homeScreenFragment"
             app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_homeScreenFragment_to_placesToVisitFragment"
             app:destination="@id/placesToVisitFragment"
+            app:popUpTo="@id/homeScreenFragment"
             app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_homeScreenFragment_to_addNewPlace"
             app:destination="@id/addNewPlace"
+            app:popUpTo="@id/homeScreenFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_personFragment"
+            app:destination="@id/personFragment"
+            app:popUpTo="@id/homeScreenFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
@@ -35,6 +44,7 @@
         <action
             android:id="@+id/action_allPlacesFragment_to_homeScreenFragment"
             app:destination="@id/homeScreenFragment"
+            app:popUpTo="@id/homeScreenFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
@@ -45,6 +55,7 @@
         <action
             android:id="@+id/action_placesToVisitFragment_to_homeScreenFragment"
             app:destination="@id/homeScreenFragment"
+            app:popUpTo="@id/homeScreenFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
@@ -55,6 +66,7 @@
         <action
             android:id="@+id/action_visitedPlacesFragment_to_homeScreenFragment"
             app:destination="@id/homeScreenFragment"
+            app:popUpTo="@id/homeScreenFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
@@ -65,6 +77,18 @@
         <action
             android:id="@+id/action_addNewPlace_to_homeScreenFragment"
             app:destination="@id/homeScreenFragment"
+            app:popUpTo="@id/homeScreenFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/personFragment"
+        android:name="com.example.goingout.fragments.PersonFragment"
+        android:label="fragment_person"
+        tools:layout="@layout/fragment_person" >
+        <action
+            android:id="@+id/action_personFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment"
+            app:popUpTo="@id/homeScreenFragment"
             app:popUpToInclusive="false" />
     </fragment>
 </navigation>
