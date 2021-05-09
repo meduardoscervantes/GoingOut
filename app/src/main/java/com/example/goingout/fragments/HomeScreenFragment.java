@@ -43,6 +43,13 @@ public class HomeScreenFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
         vm = new ViewModelProvider(this).get(ViewModel.class);
+        view.findViewById(R.id.choose_person).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(HomeScreenFragmentDirections
+                        .actionHomeScreenFragmentToPersonFragment());
+            }
+        });
         view.findViewById(R.id.all_places).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,11 +81,10 @@ public class HomeScreenFragment extends Fragment {
         view.findViewById(R.id.random).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 vm.getAllPlaces().observe(getViewLifecycleOwner(), new Observer<List<Place>>() {
                     @Override
                     public void onChanged(List<Place> places) {
-                        int rand = new Random().nextInt(places.size() + 1);
+                        int rand = new Random().nextInt(places.size());
                         Toast.makeText(getContext(),
                                 places.get(rand).getName() , Toast.LENGTH_SHORT).show();
                     }
