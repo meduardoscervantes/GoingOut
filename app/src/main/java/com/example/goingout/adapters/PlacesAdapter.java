@@ -19,6 +19,9 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.Holder> {
     public void setPlaces(List<Place> places){
         this.places = places;
     }
+    public Place getPlaceAt(int pos){
+        return places.get(pos);
+    }
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

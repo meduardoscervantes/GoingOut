@@ -84,9 +84,15 @@ public class HomeScreenFragment extends Fragment {
                 vm.getAllPlaces().observe(getViewLifecycleOwner(), new Observer<List<Place>>() {
                     @Override
                     public void onChanged(List<Place> places) {
-                        int rand = new Random().nextInt(places.size());
-                        Toast.makeText(getContext(),
-                                places.get(rand).getName() , Toast.LENGTH_SHORT).show();
+                        if(places.size() > 0 ){
+                            int rand = new Random().nextInt(places.size());
+                            Toast.makeText(getContext(),
+                                    places.get(rand).getName() + " it is!" ,
+                                    Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getContext(), "Nowhere to go!",
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }

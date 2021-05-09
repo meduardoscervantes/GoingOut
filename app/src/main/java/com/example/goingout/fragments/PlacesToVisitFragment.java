@@ -7,12 +7,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.goingout.R;
 import com.example.goingout.adapters.PlacesAdapter;
@@ -55,6 +57,24 @@ public class PlacesToVisitFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                Toast.makeText(getContext(),
+                        adapter.getPlaceAt(viewHolder.getAdapterPosition()).getName()
+                                + " deleted"
+                        , Toast.LENGTH_SHORT).show();
+                viewModel.deletePlace(adapter.getPlaceAt(viewHolder.getAdapterPosition()));
+            }
+        }).attachToRecyclerView(recycler);
     }
 
     @Override
