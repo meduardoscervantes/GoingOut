@@ -76,6 +76,8 @@ public class VisitedPlacesFragment extends Fragment {
                 viewModel.deletePlace(adapter.getPlaceAt(viewHolder.getAdapterPosition()));
             }
         }).attachToRecyclerView(recycler);
+
+
     }
 
     @Override
