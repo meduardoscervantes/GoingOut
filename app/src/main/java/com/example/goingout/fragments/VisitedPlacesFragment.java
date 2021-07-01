@@ -69,11 +69,28 @@ public class VisitedPlacesFragment extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                Toast.makeText(getContext(),
-                        adapter.getPlaceAt(viewHolder.getAdapterPosition()).getName()
-                                + " deleted"
-                        , Toast.LENGTH_SHORT).show();
-                viewModel.deletePlace(adapter.getPlaceAt(viewHolder.getAdapterPosition()));
+                if(direction == ItemTouchHelper.LEFT){
+                    Toast.makeText(getContext(),
+                            adapter.getPlaceAt(viewHolder.getAdapterPosition()).getName()
+                                    + " deleted."
+                            , Toast.LENGTH_SHORT).show();
+                    viewModel.deletePlace(adapter.getPlaceAt(viewHolder.getAdapterPosition()));
+                }else {
+                    Place updatePlace = adapter.getPlaceAt(viewHolder.getAdapterPosition());
+                    updatePlace.setVisited(!updatePlace.getVisited());
+                    if(updatePlace.getVisited()){
+                        Toast.makeText(getContext(),
+                                adapter.getPlaceAt(viewHolder.getAdapterPosition()).getName()
+                                        + " has been visited."
+                                , Toast.LENGTH_SHORT).show();
+                    } else{
+                        Toast.makeText(getContext(),
+                                adapter.getPlaceAt(viewHolder.getAdapterPosition()).getName()
+                                        + " has yet to be visited."
+                                , Toast.LENGTH_SHORT).show();
+                    }
+                    viewModel.updatePlace(updatePlace);
+                }
             }
         }).attachToRecyclerView(recycler);
 
